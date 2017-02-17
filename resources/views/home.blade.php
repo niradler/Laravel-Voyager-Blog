@@ -11,7 +11,7 @@
                     <div class="site-heading">
                         <h1>{{Voyager::setting('title')}}</h1>
                         <hr class="small">
-                        <span class="subheading">A Clean Blog Theme by Start Bootstrap</span>
+                        <span class="subheading">{{$currentPage->excerpt}}</span>
                     </div>
                 </div>
             </div>

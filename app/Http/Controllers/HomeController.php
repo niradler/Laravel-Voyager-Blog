@@ -13,7 +13,7 @@ class HomeController extends Controller
      */
     public function __construct()
     {
-        $this->middleware('auth');
+        //$this->middleware('auth');
     }
 
     /**
@@ -21,8 +21,11 @@ class HomeController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index($page)
     {
-        return view('home');
+   $currentPage = \App\Page::where('slug',$page);
+   if(!$currentPage->count()) return view('errors.404');
+   $currentPage=$currentPage->get()[0];
+        return view($page,compact('currentPage'));
     }
 }
