@@ -26,6 +26,6 @@ class HomeController extends Controller
    $currentPage = \App\Page::where('slug',$page);
    if(!$currentPage->count()) return view('errors.404');
    $currentPage=$currentPage->get()[0];
-        return view($page,compact('currentPage'));
+        return view('home',compact('currentPage'));
     }
 }

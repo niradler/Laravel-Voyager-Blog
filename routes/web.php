@@ -22,4 +22,8 @@ Route::group(['prefix' => 'admin'], function () {
 
 Auth::routes();
 
+Route::get('/blog', 'PostsController@index');
+
+Route::resource('posts', 'PostsController');
+
 Route::get('/{page}', 'HomeController@index');
