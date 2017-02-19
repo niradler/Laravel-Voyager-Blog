@@ -14,8 +14,8 @@ class PostsController extends Controller
      */
     public function index()
     {
-        $posts = \App\Post::all();
-        //$posts->paginate(10);
+        $posts = \App\Post::where('status','PUBLISHED')->orderBy('created_at', 'desc')->get();
+  
         return view('blog')->with(['posts'=>$posts]);
     }
 
