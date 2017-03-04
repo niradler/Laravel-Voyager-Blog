@@ -12,7 +12,8 @@
 */
 
 Route::get('/', function () {
-    return redirect('/home');
+   // return redirect('/home');
+    return redirect('/blog');
 });
 
 
@@ -25,5 +26,5 @@ Auth::routes();
 Route::get('/blog', 'PostsController@index');
 
 Route::resource('posts', 'PostsController');
-
+Route::post('/posts/{post}/comment', 'PostsController@addComment');
 Route::get('/{page}', 'HomeController@index');

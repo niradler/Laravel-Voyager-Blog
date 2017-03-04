@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Post;
+use App\Comment;
 use Illuminate\Http\Request;
 
 class PostsController extends Controller
@@ -49,7 +50,8 @@ class PostsController extends Controller
     public function show(Post $post)
     {
        return view('post')->with([
-           "post"=>$post
+           "post"=>$post,
+           'comments'=>\App\Comment::where('post_id',$post->id)->orderBy('created_at', 'desc')->get()
        ]);
     }
 
@@ -86,4 +88,15 @@ class PostsController extends Controller
     {
         //
     }
+      public function addComment(Request $request,Post $post)
+    {
+        $comment = new \App\Comment;
+        $comment->author= $request->author;
+        $comment->email= $request->email;
+        $comment->post_id= $post->id;
+        $comment->content= $request->content;
+        $comment->save();
+        return redirect()->back();
+    }
+    
 }
